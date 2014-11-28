@@ -20,7 +20,7 @@ public class App {
 		String imieGracza = scan.nextLine();
 		nowaGra.getListaGraczy().add(new Gracz(imieGracza));
 		
-		while(nowaGra.getListaGraczy().get(0).getPieniadze() > 0) {
+		while(nowaGra.getListaGraczy().get(0).getPunkty() > 0) {
 			
 			nowaGra.nowyWyscig(100);
 			
@@ -37,7 +37,7 @@ public class App {
 				System.out.println("Kon " + k.getNazwa() + ", Wytrzymalosc: " + k.getWytrzymalosc() + ", Szybkosc: " + k.getSzybkosc() + ", Szczescie: " + k.getSzczescie() + ", Wiek: " + k.getWiek() + ", Kontuzja: " + k.getCzyKontuzjowany());
 			}
 			
-			System.out.println("Twoja gotowka: " + nowaGra.getListaGraczy().get(0).getPieniadze());
+			System.out.println("Twoja gotowka: " + nowaGra.getListaGraczy().get(0).getPunkty());
 			
 			System.out.println("Stawiam na konia nr: ");
 			int numerKonia = scan.nextInt();
@@ -73,11 +73,11 @@ public class App {
 			
 			if(nowaGra.getAktualnyWyscig().getZwyciezcaWyscigu() == nowaGra.getListaGraczy().get(0).getObstawionyKon()) {
 				System.out.println("Gratulacje wygrałeś: " + stawka*3 + "\n");
-				nowaGra.getListaGraczy().get(0).setPieniadze(nowaGra.getListaGraczy().get(0).getPieniadze() + stawka*3); //TODO to też zmienic, zeby mozna bylo jedna metoda dodawac pieniadze a nie takim czyms!
+				nowaGra.getListaGraczy().get(0).dodajPunkty(stawka*3);
 			}
 			else {
 				System.out.println("Niestety przegrałeś: " + stawka + "\n");
-				nowaGra.getListaGraczy().get(0).setPieniadze(nowaGra.getListaGraczy().get(0).getPieniadze() - stawka); //TODO to też zmienic, zeby mozna bylo jedna metoda dodawac pieniadze a nie takim czyms!
+				nowaGra.getListaGraczy().get(0).odejmijPunkty(stawka);
 	
 			}
 		}
