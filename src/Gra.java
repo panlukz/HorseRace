@@ -16,9 +16,11 @@ public class Gra {
 	private List<Gracz> listaGraczy;
 	private Wyscig aktualnyWyscig;
 	private Kon obstawionyKon;
+	private boolean czyTrwa;
 	
 	public Gra() {
 		listaGraczy = new ArrayList<Gracz>();
+		czyTrwa = true;
 	}
 	
 	public List<Gracz> getListaGraczy() {
@@ -31,6 +33,10 @@ public class Gra {
 	
 	public Kon getObstawionyKon() {
 		return this.obstawionyKon;
+	}
+	
+	public boolean CzyTrwa() {
+		return this.czyTrwa;
 	}
 	
 	public void nowyWyscig(double dystans, int liczbaKoni) {

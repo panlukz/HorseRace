@@ -23,7 +23,7 @@ public class Wyscig {
 	}
 	
 	private void dodajKonie(int liczbaKoni) {
-		for (int i = 1; i < liczbaKoni; i++)
+		for (int i = 0; i < liczbaKoni; i++)
 			this.listaKoni.add(new Kon());
 	}
 
@@ -31,16 +31,16 @@ public class Wyscig {
 		return dystans;
 	}
 	
-	public void dodajKonia(Kon k) {
-		this.listaKoni.add(k);
-	}
-	
-	public int iloscKoni() {
+	public int getIloscKoni() {
 		return this.listaKoni.size();
 	}
 	
 	public boolean CzyZakonczylSie() {
 		return czyZakonczylSie;
+	}
+	
+	public Kon getZwyciezcaWyscigu() {
+		return zwyciezcaWyscigu;
 	}
 	
 	public List<Kon> ListaKoni() {
@@ -94,9 +94,7 @@ public class Wyscig {
 		}
 	}
 
-	public Kon getZwyciezcaWyscigu() {
-		return zwyciezcaWyscigu;
-	}
+
 
 
 }

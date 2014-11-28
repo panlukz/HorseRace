@@ -20,7 +20,9 @@ public class App {
 		String imieGracza = scan.nextLine();
 		nowaGra.getListaGraczy().add(new Gracz(imieGracza));
 		
-		while(nowaGra.getListaGraczy().get(0).getPunkty() > 0) {
+		//while(nowaGra.getListaGraczy().get(0).getPunkty() > 0) {
+		while(nowaGra.CzyTrwa()) {
+
 			
 			nowaGra.nowyWyscig(100, 5);
 			
@@ -42,11 +44,8 @@ public class App {
 				nowaGra.getAktualnyWyscig().NastepnyRuch();
 				
 				
-				
 				for (Kon k : nowaGra.getAktualnyWyscig().ListaKoni()) {
 					System.out.println(k.getNazwa() + " " + k.getPozycja());
-					
-					
 				}
 				
 				try {
@@ -58,7 +57,7 @@ public class App {
 	
 			System.out.println("W wysciugu udział brali:");
 			for (Kon k : nowaGra.getAktualnyWyscig().ListaKoni()) {
-				System.out.println("Kon " + k.getNazwa() + "\tWytrzymalosc: " + k.getWytrzymalosc() + "\tSzybkosc: " + k.getSzybkosc() + "\tSzczescie: " + k.getSzczescie() + "\tWiek: " + k.getWiek());
+				System.out.println("Kon " + k.getNazwa() + "\t\tWytrzymalosc: " + k.getWytrzymalosc() + "\tSzybkosc: " + k.getSzybkosc() + "\tSzczescie: " + k.getSzczescie() + "\tWiek: " + k.getWiek());
 			}
 			
 			System.out.println("Wyscig wygrywa kon: " + nowaGra.getAktualnyWyscig().getZwyciezcaWyscigu().getNazwa());
@@ -75,7 +74,7 @@ public class App {
 		}
 		
 		System.out.println("Niestety skonczyla Ci sie gotowka! :( Zagraj jeszcze raz!");
-		
+		// TESTETSTETSTETSTESTETSETSTETETSTESTETETSTEETESTETEST BRANCH PRZENIESIENIE
 	}
 
 
