@@ -17,9 +17,16 @@ public class Gra {
 	private Wyscig aktualnyWyscig;
 	private Kon obstawionyKon;
 	private boolean czyTrwa;
+	private Gracz aktualnyGracz;
 	
-	public Gra() {
-		listaGraczy = new ArrayList<Gracz>();
+	public Gra(int iloscGraczy) {
+		this.listaGraczy = new ArrayList<Gracz>();
+		
+		for(int i=0; i<iloscGraczy; i++)
+			this.listaGraczy.add(new Gracz("imie")); //TODO zrobic to tak zeby w konstruktorze byla przekazywana moze tablica z imionami graczy?!
+		
+		this.aktualnyGracz = this.listaGraczy.get(0);
+				
 		czyTrwa = true;
 	}
 	
@@ -39,8 +46,25 @@ public class Gra {
 		return this.czyTrwa;
 	}
 	
+	public Gracz getAktualnyGracz() {
+		return this.aktualnyGracz;
+	}
+	
 	public void nowyWyscig(double dystans, int liczbaKoni) {
 		this.aktualnyWyscig =  new Wyscig(dystans, liczbaKoni);
+	}
+	public List<Kon> getUczestnicyWyscigu() {
+		return this.aktualnyWyscig.ListaKoni();
+	}
+	
+	public void nastepnyGracz() {
+		int indexAktualnegoGracza = this.listaGraczy.indexOf(aktualnyGracz);
+		
+		if(indexAktualnegoGracza + 1 < this.listaGraczy.size()) {
+			this.aktualnyGracz = this.listaGraczy.get(indexAktualnegoGracza + 1);
+		}
+		else
+			this.aktualnyGracz = this.listaGraczy.get(0);
 	}
 	
 }
