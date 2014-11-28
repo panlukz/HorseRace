@@ -10,12 +10,12 @@ public class Wyscig {
 
 	private double dystans;
 	private List<Kon> listaKoni;
-	private boolean czyZakonczylSie;
+	private boolean czyTrwa;
 	private Kon zwyciezcaWyscigu;
 	
 	public Wyscig(double dlugoscDystansu, int liczbaKoni) {
 		this.listaKoni = new ArrayList<Kon>();
-		this.czyZakonczylSie = false;		
+		this.czyTrwa = true;		
 		
 		this.dodajKonie(liczbaKoni);
 		this.dystans = dlugoscDystansu;
@@ -35,8 +35,8 @@ public class Wyscig {
 		return this.listaKoni.size();
 	}
 	
-	public boolean CzyZakonczylSie() {
-		return czyZakonczylSie;
+	public boolean CzyTrwa() {
+		return czyTrwa;
 	}
 	
 	public Kon getZwyciezcaWyscigu() {
@@ -88,7 +88,7 @@ public class Wyscig {
 			//Jeżeli okaże się że dany z koni pokonał dystans wyścigu, czyli wygrał
 			if(k.getPozycja() >= this.dystans) {
 				this.zwyciezcaWyscigu = k;
-				this.czyZakonczylSie = true;
+				this.czyTrwa = false;
 				break;
 			}
 		}
