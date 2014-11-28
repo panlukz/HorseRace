@@ -13,13 +13,19 @@ public class Wyscig {
 	private boolean czyZakonczylSie;
 	private Kon zwyciezcaWyscigu;
 	
-	public Wyscig(double d) {
-		this.dystans = d;
+	public Wyscig(double dlugoscDystansu, int liczbaKoni) {
 		this.listaKoni = new ArrayList<Kon>();
 		this.czyZakonczylSie = false;		
+		
+		this.dodajKonie(liczbaKoni);
+		this.dystans = dlugoscDystansu;
+		
 	}
 	
-
+	private void dodajKonie(int liczbaKoni) {
+		for (int i = 1; i < liczbaKoni; i++)
+			this.listaKoni.add(new Kon());
+	}
 
 	public double getDystans() {
 		return dystans;

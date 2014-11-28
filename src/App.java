@@ -22,19 +22,11 @@ public class App {
 		
 		while(nowaGra.getListaGraczy().get(0).getPunkty() > 0) {
 			
-			nowaGra.nowyWyscig(100);
-			
-			//z tego pewnie metoda przygotowujaca wyscig:
-			//imiona dla kuniow bedo losowane
-			nowaGra.getAktualnyWyscig().dodajKonia(new Kon("Jeden"));
-			nowaGra.getAktualnyWyscig().dodajKonia(new Kon("Dwa"));
-			nowaGra.getAktualnyWyscig().dodajKonia(new Kon("Trzy"));
-			nowaGra.getAktualnyWyscig().dodajKonia(new Kon("Cztery"));
-			nowaGra.getAktualnyWyscig().dodajKonia(new Kon("Pięć"));
+			nowaGra.nowyWyscig(100, 5);
 			
 			//z tego tez chyba metoda pokazujaca uczestnikow wyscigu:
 			for (Kon k : nowaGra.getAktualnyWyscig().ListaKoni()) {
-				System.out.println("Kon " + k.getNazwa() + ", Wytrzymalosc: " + k.getWytrzymalosc() + ", Szybkosc: " + k.getSzybkosc() + ", Szczescie: " + k.getSzczescie() + ", Wiek: " + k.getWiek() + ", Kontuzja: " + k.getCzyKontuzjowany());
+				System.out.println("Kon " + k.getNazwa() + "\tWytrzymalosc: " + k.getWytrzymalosc() + "\tSzybkosc: " + k.getSzybkosc() + "\tSzczescie: " + k.getSzczescie() + "\tWiek: " + k.getWiek());
 			}
 			
 			System.out.println("Twoja gotowka: " + nowaGra.getListaGraczy().get(0).getPunkty());
@@ -66,7 +58,7 @@ public class App {
 	
 			System.out.println("W wysciugu udział brali:");
 			for (Kon k : nowaGra.getAktualnyWyscig().ListaKoni()) {
-				System.out.println("Kon " + k.getNazwa() + ", Wytrzymalosc: " + k.getWytrzymalosc() + ", Szybkosc: " + k.getSzybkosc() + ", Szczescie: " + k.getSzczescie() + ", Wiek: " + k.getWiek() + ", Kontuzja: " + k.getCzyKontuzjowany());
+				System.out.println("Kon " + k.getNazwa() + "\tWytrzymalosc: " + k.getWytrzymalosc() + "\tSzybkosc: " + k.getSzybkosc() + "\tSzczescie: " + k.getSzczescie() + "\tWiek: " + k.getWiek());
 			}
 			
 			System.out.println("Wyscig wygrywa kon: " + nowaGra.getAktualnyWyscig().getZwyciezcaWyscigu().getNazwa());

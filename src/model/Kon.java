@@ -15,7 +15,7 @@ public class Kon {
 	
 	private double pozycja;
 	
-	public Kon(String n) {
+	public Kon() {
 		Random generator = new Random();
 		this.czyKontuzjowany = false;
 		this.nazwa = ImionaKoni.generujNazwe();

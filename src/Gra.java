@@ -33,8 +33,8 @@ public class Gra {
 		return this.obstawionyKon;
 	}
 	
-	public void nowyWyscig(double d) {
-		this.aktualnyWyscig =  new Wyscig(d);
+	public void nowyWyscig(double dystans, int liczbaKoni) {
+		this.aktualnyWyscig =  new Wyscig(dystans, liczbaKoni);
 	}
 	
 }
