@@ -12,10 +12,6 @@ Im większa tym koń szybszy.
 Wartość: 5 - 25.
 Przeciętna długość życia konia wynosi 25-30 lat. Koń jest w najlepszej formie w okolicach 12 roku życia. Wcześniej jego forma jest albo niedoszlifowana albo ma małe doświadczenie w bieganiu. Powyżej 18 roku życia koń jest coraz to wolniejszy.
 
-### Doświadczenie ###
-Wartość: 0 - 10.
-Doświadczenie w bieganiu. Im koń ma większe doświadczenie, tym lepiej potrafi rozłożyć siły na dłuższym dystansie. 
-
 ### Wytrzymałość ###
 Wartość: 2 - 10.
 Im koń ma większą wytrzymałość tym skuteczniej utrzymuje swoją szybkość przez cały wyścig. Jeżeli ma małą wytrzymałość, jego szybkość spadnie po dłuższym dystansie.
