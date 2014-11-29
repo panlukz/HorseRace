@@ -66,5 +66,10 @@ public class Kon {
 	public boolean getCzyKontuzjowany() {
 		return this.czyKontuzjowany;
 	}
+	
+	@Override 
+	public String toString() {
+		return this.nazwa;
+	}
 
 }
