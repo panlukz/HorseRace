@@ -11,10 +11,11 @@ import java.util.Scanner;
 import model.Gracz;
 import model.Kon;
 import model.Wyscig;
+import model.Zaklad;
 
 public class Gra {
 	
-	private double mnoznikStawki = 3;
+
 	private List<Gracz> listaGraczy;
 	private Wyscig aktualnyWyscig;
 	private Kon obstawionyKon;
@@ -52,13 +53,7 @@ public class Gra {
 		return this.aktualnyGracz;
 	}
 	
-	public double getMnoznikStawki() {
-		return this.mnoznikStawki;
-	}
-	
-	public void setMnoznikStawki(double m) {
-		this.mnoznikStawki = m;
-	}
+
 	
 	public void nowyWyscig(double dystans, int liczbaKoni) {
 		this.aktualnyWyscig =  new Wyscig(dystans, liczbaKoni);
@@ -110,17 +105,21 @@ public class Gra {
 	        }
 		}
 		
-		for (Gracz gracz : this.listaGraczy) {
+		for (Zaklad zaklad : this.aktualnyWyscig.getListaZakladow()) {
 			
-			if(gracz.getStawka() > 0) {
+			if(this.aktualnyWyscig.getZwyciezcaWyscigu() == zaklad.getKon())
+				zaklad.getGracz().dodajPunkty(zaklad.getStawka() * this.aktualnyWyscig.getMnoznikStawki());
+			else {
+				zaklad.getGracz().odejmijPunkty(zaklad.getStawka());
 				
-				if(this.aktualnyWyscig.getZwyciezcaWyscigu() == gracz.getObstawionyKon())
-					gracz.dodajPunkty(gracz.getStawka() * mnoznikStawki);
-				else
-					gracz.odejmijPunkty(gracz.getStawka());
-				
+				if(zaklad.getGracz().getPunkty() <= 0)
+					this.listaGraczy.remove(zaklad.getGracz());
 			}
+				
+			
+			
 		}
+		
 		
 		if(sprawdzCzyKoniec())
 			this.czyTrwa = false;
