@@ -12,14 +12,33 @@ public class Wyscig {
 	private List<Kon> listaKoni;
 	private boolean czyTrwa;
 	private Kon zwyciezcaWyscigu;
+	private List<Zaklad> listaZakladow;
+	private double mnoznikStawki = 3;
 	
 	public Wyscig(double dlugoscDystansu, int liczbaKoni) {
+		this.listaZakladow = new ArrayList<Zaklad>();
 		this.listaKoni = new ArrayList<Kon>();
 		this.czyTrwa = true;		
 		
 		this.dodajKonie(liczbaKoni);
 		this.dystans = dlugoscDystansu;
 		
+	}
+	
+	public double getMnoznikStawki() {
+		return this.mnoznikStawki;
+	}
+	
+	public void setMnoznikStawki(double m) {
+		this.mnoznikStawki = m;
+	}
+	
+	public void zlozZaklad(Gracz g, Kon k, double s) {
+		listaZakladow.add(new Zaklad(g, k, s));
+	}
+	
+	public List<Zaklad> getListaZakladow() {
+		return this.listaZakladow;
 	}
 	
 	private void dodajKonie(int liczbaKoni) {
