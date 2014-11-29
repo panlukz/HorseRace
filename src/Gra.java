@@ -85,25 +85,7 @@ public class Gra {
 	
 	public void startWyscigu() {
 		
-		int step = 1;
-		while(this.aktualnyWyscig.CzyTrwa()) {
-			this.aktualnyWyscig.NastepnyRuch();
-			
-			System.out.println("---------- " + step + " --------------");
-			for (int i=0; i<this.aktualnyWyscig.ListaKoni().size(); i++) {
-				Kon k = this.aktualnyWyscig.ListaKoni().get(i);
-				System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
-				
-			}
-			
-			step++;
-		
-			try {
-	            Thread.sleep(20);
-	        } 
-	        catch (InterruptedException e) {
-	        }
-		}
+		this.aktualnyWyscig.start();
 		
 		for (Zaklad zaklad : this.aktualnyWyscig.getListaZakladow()) {
 			

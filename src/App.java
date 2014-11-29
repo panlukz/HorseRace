@@ -11,8 +11,10 @@ import model.Zaklad;
 public class App {
 
 	public App() {
-
+		
 	}
+	
+	private static Scanner scan = new Scanner(System.in);
 
 	public static void pokazUczestnikowWyscigu(Wyscig wyscig) {
 		
@@ -48,7 +50,6 @@ public class App {
 	}
 	
 	public static int pobierzLiczbeGraczy() {
-		Scanner scan = new Scanner(System.in);
 		int liczbaGraczy;
 		do {
 			System.out.print("Wpisz liczbę graczy (1-4): ");
@@ -76,6 +77,7 @@ public class App {
 				System.out.print("Gracz numer " + (i+1) + ": ");
 				imie = scan.nextLine();
 			} while (imie.length() < 1 || imie.length() > 20);
+			
 			imionaGraczy.add(imie);
 		}
 		return imionaGraczy;
@@ -83,8 +85,6 @@ public class App {
 	}
 	
 	public static void main(String[] args) {
-		// z czasem do wyjebki:
-		Scanner scan = new Scanner(System.in);
 		
 		int liczbaGraczy = pobierzLiczbeGraczy();
 		

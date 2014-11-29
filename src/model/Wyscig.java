@@ -65,6 +65,28 @@ public class Wyscig {
 	public List<Kon> ListaKoni() {
 		return listaKoni;
 	}
+	
+	public void start() {
+		int step = 1;
+		while(this.czyTrwa) {
+			this.NastepnyRuch();
+			
+			System.out.println("---------- " + step + " --------------");
+			for (int i=0; i<this.listaKoni.size(); i++) {
+				Kon k = this.listaKoni.get(i);
+				System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
+				
+			}
+			
+			step++;
+		
+			try {
+	            Thread.sleep(20);
+	        } 
+	        catch (InterruptedException e) {
+	        }
+		}
+	}
 
 	public void NastepnyRuch() {
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
@@ -104,7 +126,7 @@ public class Wyscig {
 			k.setPozycja(nowaPozycjaKonia);
 				
 				
-			//Jeżeli okaże się że dany z koni pokonał dystans wyścigu, czyli wygrał
+			//Jeżeli okaże się że dany kuń pokonał dystans wyścigu, czyli wygrał
 			if(k.getPozycja() >= this.dystans) {
 				this.zwyciezcaWyscigu = k;
 				this.czyTrwa = false;
