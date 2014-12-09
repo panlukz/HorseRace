@@ -8,58 +8,74 @@ public class ImionaKoni {
 	
 	private static ImionaKoni instance = new ImionaKoni();
 	
-	private List<String> imiona = new ArrayList<String>();
-	private List<String> przydomki = new ArrayList<String>();
+	private List<String> names = new ArrayList<String>();
+	private List<String> nicknames = new ArrayList<String>();
 	
 	private static Random generator = new Random();
 
 	
 	private ImionaKoni() {
-		
-		imiona.add("Wiesiek");
-		imiona.add("Poniedziałek");
-		imiona.add("Kalosz");
-		imiona.add("Kasztan");
-		imiona.add("Książe");
-		imiona.add("Robak");
-		imiona.add("Dionizy");
-		imiona.add("Czarek");
-		imiona.add("Patryk");
-		imiona.add("Rafał");
-		
-		przydomki.add("Zużyty");
-		przydomki.add("Sprytny");
-		przydomki.add("Mroźny");
-		przydomki.add("Zawźięty");
-		przydomki.add("Rudy");
-		przydomki.add("Szczęśliwy");
-		przydomki.add("Enigmatyczny");
-		przydomki.add("Garbaty");
-		przydomki.add("Dostojny");
-		przydomki.add("Śmiały");
-
+		addNames();
+		addNickNames();
 	}
 	
+	
+	
+	private void addNickNames() {
+		names.add("Wiesiek");
+		names.add("Poniedziałek");
+		names.add("Kalosz");
+		names.add("Kasztan");
+		names.add("Książe");
+		names.add("Robak");
+		names.add("Dionizy");
+		names.add("Czarek");
+		names.add("Patryk");
+		names.add("Rafał");
+	}
+
+
+
+	private void addNames() {
+		nicknames.add("Zużyty");
+		nicknames.add("Sprytny");
+		nicknames.add("Mroźny");
+		nicknames.add("Zawźięty");
+		nicknames.add("Rudy");
+		nicknames.add("Szczęśliwy");
+		nicknames.add("Enigmatyczny");
+		nicknames.add("Garbaty");
+		nicknames.add("Dostojny");
+		nicknames.add("Śmiały");
+	}
+
+
+
 	public static ImionaKoni getInstance() {
 		return instance;
 	}
 	
-	private String generujImie() {
-		int generatedDigit = generator.nextInt(imiona.size());
-		String randomName = imiona.get(generatedDigit);
-		imiona.remove(generatedDigit);
+	private String generateFirstName() {
+		int generatedDigit = generator.nextInt(names.size());
+		String randomName = names.get(generatedDigit);
+		names.remove(generatedDigit);
 		return randomName;
 	}
 	
-	private String generujPrzydomek() {
-		int generatedDigit = generator.nextInt(przydomki.size());
-		String randomNickname = przydomki.get(generatedDigit);
-		przydomki.remove(generatedDigit);
+	private String generateNickname() {
+		int generatedDigit = generator.nextInt(nicknames.size());
+		String randomNickname = nicknames.get(generatedDigit);
+		nicknames.remove(generatedDigit);
 		return randomNickname;
 	}
 	
-	protected String generujNazwe() {
-		return generujPrzydomek() + " " + generujImie();
+	protected String generateName() {
+		if(names.size() == 0 && nicknames.size() == 0) {
+			addNames();
+			addNickNames();
+		}
+		
+		return generateNickname() + " " + generateFirstName();
 	}
 	
 
