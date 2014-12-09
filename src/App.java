@@ -97,7 +97,9 @@ public class App {
 		
 		while(nowaGra.CzyTrwa()) {
 			
-			nowaGra.nowyWyscig(100, 10); //TODO z tym też coś ogarnąć!
+			int liczbaKoni = 10;
+			int dlugoscDystansu = 100;
+			nowaGra.nowyWyscig(dlugoscDystansu, liczbaKoni); //TODO z tym też coś ogarnąć!
 			
 			System.out.print("\n\nW wyścigu udział biorą:\n");
 			pokazUczestnikowWyscigu(nowaGra.getAktualnyWyscig());
@@ -107,34 +109,11 @@ public class App {
 				System.out.println("\n--------------------------");
 				System.out.println("Gracz: " + gracz.getNazwa());
 				System.out.println("Twoja gotowka: " + gracz.getPunkty());
-					
-				double stawka;
-				do {
-					System.out.print("Stawiam gotówki (wpisz 0 jeżeli nie chcesz grać w tej rundzie): ");
-					
-					try {
-						stawka = Double.parseDouble(scan.nextLine());
-						}
-						catch(NumberFormatException e) {
-							stawka = -1;
-						}
-					
-				} while (stawka < 0 || stawka > gracz.getPunkty());
-					
-				if(stawka != 0) {
-					int numerObstawionegoKonia;
-					do {
-						System.out.print("Stawiam na konia nr: ");
-						
-						try {
-							numerObstawionegoKonia = Integer.parseInt(scan.nextLine());
-							}
-							catch(NumberFormatException e) {
-							  numerObstawionegoKonia = 0;
-							}
-						
-					} while (numerObstawionegoKonia > nowaGra.getAktualnyWyscig().ListaKoni().size() || numerObstawionegoKonia < 1);
-					
+				
+				double stawka = pobierzStawke(gracz);
+				
+				if(stawka > 0) {
+					int numerObstawionegoKonia = pobierzNumerObstawianegoKonia(gracz, liczbaKoni);
 					Kon obstawionyKon = nowaGra.getAktualnyWyscig().ListaKoni().get(numerObstawionegoKonia - 1);
 					nowaGra.getAktualnyWyscig().zlozZaklad(gracz, obstawionyKon, stawka);
 						
@@ -158,6 +137,40 @@ public class App {
 		
 		System.out.println("... ale niestety wszystkim graczom skonczyla sie gotowka! :( Game over! Do książek!");
 		
+	}
+
+	private static int pobierzNumerObstawianegoKonia(Gracz gracz, int liczbaKoni) {
+		int numerObstawionegoKonia;
+		do {
+			System.out.print("Stawiam na konia nr: ");
+			
+			try {
+				numerObstawionegoKonia = Integer.parseInt(scan.nextLine());
+				}
+				catch(NumberFormatException e) {
+				  numerObstawionegoKonia = 0;
+				}
+			
+		} while (numerObstawionegoKonia > liczbaKoni || numerObstawionegoKonia < 1);
+		
+		return numerObstawionegoKonia;
+	}
+
+	private static double pobierzStawke(Gracz gracz) {
+		double stawka;
+		do {
+			System.out.print("Stawiam gotówki (wpisz 0 jeżeli nie chcesz grać w tej rundzie): ");
+			
+			try {
+				stawka = Double.parseDouble(scan.nextLine());
+				}
+				catch(NumberFormatException e) {
+					stawka = -1;
+				}
+			
+		} while (stawka < 0 || stawka > gracz.getPunkty());
+		
+		return stawka;
 	}
 
 }
