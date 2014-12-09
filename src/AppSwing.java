@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import model.Gra;
 import model.Wyscig;
 import model.Kon;
 import view.PobieranieImionWidok;

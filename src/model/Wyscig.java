@@ -89,6 +89,14 @@ public class Wyscig {
 	}
 
 	public void NastepnyRuch() {
+		
+		System.out.println("----------  --------------");
+		for (int i=0; i<this.listaKoni.size(); i++) {
+			Kon k = this.listaKoni.get(i);
+			System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
+			
+		}
+		
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
 		// oczywiście biorąc pod uwagę kryteria
 		Random losowa = new Random();
@@ -122,7 +130,7 @@ public class Wyscig {
 				
 				
 			//Obliczyliśmy już składowe do wyliczenia długosci ruchu konia, teraz wyliczamy
-			double nowaPozycjaKonia = k.getPozycja() + (k.getSzybkosc()/10) * mnoznikWytrzymalosci; //TODO 1 zamienic na warunek...
+			double nowaPozycjaKonia = k.getPozycja() + (k.getSzybkosc()/10.0) * mnoznikWytrzymalosci; //TODO 1 zamienic na warunek...
 			k.setPozycja(nowaPozycjaKonia);
 				
 				
