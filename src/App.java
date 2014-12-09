@@ -150,9 +150,13 @@ public class App {
 	
 			pokazPodsumowanieWyscigu(nowaGra.getAktualnyWyscig());
 			
+			System.out.println("\nRozpoczyna się następny wyścig...");
+			scan.nextLine();
+			
+			
 		}
 		
-		System.out.println("Niestety wszystkim graczom skonczyla sie gotowka! :( Game over! Do książek!");
+		System.out.println("... ale niestety wszystkim graczom skonczyla sie gotowka! :( Game over! Do książek!");
 		
 	}
 
