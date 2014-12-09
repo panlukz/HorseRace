@@ -102,36 +102,7 @@ public class Wyscig {
 		Random losowa = new Random();
 		for (Kon k : listaKoni) {
 			
-			// Obliczamy mnożnik dystansu
-			double dystans = k.getPozycja() / this.dystans;
-			double mnoznikWytrzymalosci = 1;
-				
-			if((dystans > 0.5) && (k.getWytrzymalosc() < 9)) {
-					
-				if((k.getWytrzymalosc() > 6) && (dystans > 0.75)) {
-					mnoznikWytrzymalosci = 0.7;
-				}
-					
-				else if((k.getWytrzymalosc() > 4) && (k.getWytrzymalosc() < 6)) {
-					mnoznikWytrzymalosci = 0.7;
-				}
-					
-				else if((k.getWytrzymalosc() < 4)) {
-					mnoznikWytrzymalosci = 0.5;
-				}
-					
-			}
-			
-			//Obliczamy kontuzję:
-			if ((k.getWiek() > 15) && (k.getSzczescie() < 5) && (losowa.nextInt(100) == 5)) {
-				k.zlapalKontuzje();
-				
-			}
-				
-				
-			//Obliczyliśmy już składowe do wyliczenia długosci ruchu konia, teraz wyliczamy
-			double nowaPozycjaKonia = k.getPozycja() + (k.getSzybkosc()/10.0) * mnoznikWytrzymalosci; //TODO 1 zamienic na warunek...
-			k.setPozycja(nowaPozycjaKonia);
+			k.doMove(this.dystans);
 				
 				
 			//Jeżeli okaże się że dany kuń pokonał dystans wyścigu, czyli wygrał
