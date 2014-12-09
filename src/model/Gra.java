@@ -18,6 +18,7 @@ public class Gra {
 	private boolean czyTrwa;
 	private Gracz aktualnyGracz;
 	
+	
 	public Gra(int iloscGraczy, List<String> imionaGraczy) {
 		this.listaGraczy = new ArrayList<Gracz>();
 		

@@ -15,10 +15,13 @@ public class Kon {
 	
 	private double pozycja;
 	
+	private ImionaKoni imionaKoni = ImionaKoni.getInstance();
+
+	
 	public Kon() {
 		Random generator = new Random();
 		this.czyKontuzjowany = false;
-		this.nazwa = ImionaKoni.generujNazwe();
+		this.nazwa = imionaKoni.generujNazwe();
 		this.pozycja = 0; //Pozycja startowa konia w wyscigu (w przebytym dystansie)
 		this.wiek = generator.nextInt(20) + 5;
 		this.szybkosc = generator.nextInt(6) + 5;

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import model.Gra;
 import model.Gracz;
+import model.ImionaKoni;
 import model.Kon;
 import model.Wyscig;
 import model.Zaklad;
@@ -86,6 +87,7 @@ public class App {
 	}
 	
 	public static void main(String[] args) {
+		
 		
 		int liczbaGraczy = pobierzLiczbeGraczy();
 		
