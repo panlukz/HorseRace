@@ -41,7 +41,7 @@ public class WyscigWidok extends JPanel implements Runnable {
 			Horse kon = listaKoni.get(i);
 			
 			
-			g2d.drawImage(konIkona.nastepnaKlatka(), (int)kon.getPozycja(), (100*i), this);
+			g2d.drawImage(konIkona.nastepnaKlatka(), (int)kon.getPosition(), (100*i), this);
 		}
 		
 	}

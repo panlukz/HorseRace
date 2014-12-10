@@ -18,104 +18,104 @@ public class App {
 	
 	private static Scanner scan = new Scanner(System.in);
 
-	public static void pokazUczestnikowWyscigu(Race wyscig) {
+	public static void showRaceMembers(Race race) {
 		
-		for (int i=0; i<wyscig.getHorsesList().size(); i++) {
+		for (int i=0; i<race.getHorsesList().size(); i++) {
 			
-			Horse k = wyscig.getHorsesList().get(i);
+			Horse k = race.getHorsesList().get(i);
 			System.out.println("-------------------------------------------------------------------------------------------------");
-			System.out.println((i+1) + ". Kon " + k.getNazwa() + "\tWytrzymalosc: " + k.getWytrzymalosc() +
-					"\tSzybkosc: " + k.getSzybkosc() + "\tSzczescie: " + k.getSzczescie() + "\tWiek: " + k.getWiek());
+			System.out.println((i+1) + ". Kon " + k.getName() + "\tWytrzymalosc: " + k.getStrength() +
+					"\tSzybkosc: " + k.getSpeed() + "\tSzczescie: " + k.getLuck() + "\tWiek: " + k.getAge());
 		
 		}
 		
 	}
 	
-	public static void pokazPodsumowanieWyscigu(Race wyscig) {
+	public static void showRaceSummary(Race race) {
 		System.out.println("\nW wysciugu udział brały następujące konie:");
-		pokazUczestnikowWyscigu(wyscig);
+		showRaceMembers(race);
 		
-		System.out.println("\nWyscig wygrywa kon: " + wyscig.getRaceWinner().getNazwa());
+		System.out.println("\nWyscig wygrywa kon: " + race.getRaceWinner().getName());
 		
-		for (Bet bet : wyscig.getBetList()) {
+		for (Bet bet : race.getBetList()) {
 			
-			if(bet.getHorse() == wyscig.getRaceWinner()) {
-				System.out.println(bet.getPlayer().getName() + " stawiałeś na " + bet.getHorse().getNazwa() +
-						"! Gratulacje wygrałeś " + bet.getBid() * wyscig.getBidMultiplier());
+			if(bet.getHorse() == race.getRaceWinner()) {
+				System.out.println(bet.getPlayer().getName() + " stawiałeś na " + bet.getHorse().getName() +
+						"! Gratulacje wygrałeś " + bet.getBid() * race.getBidMultiplier());
 			}
 			else {
-				System.out.println(bet.getPlayer().getName() + " stawiałeś na " + bet.getHorse().getNazwa() +
+				System.out.println(bet.getPlayer().getName() + " stawiałeś na " + bet.getHorse().getName() +
 						" i niestety przegrałeś: " + bet.getBid());
 			}
 			
 		}
 	}
 	
-	public static int pobierzLiczbeGraczy() {
-		int liczbaGraczy;
+	public static int getNumberOfPlayers() {
+		int numberOfPlayers;
 		do {
 			System.out.print("Wpisz liczbę graczy (1-4): ");
 
 			try {
-			   liczbaGraczy = Integer.parseInt(scan.nextLine());
+			   numberOfPlayers = Integer.parseInt(scan.nextLine());
 			}
 			catch(NumberFormatException e) {
-			  liczbaGraczy = 0;
+			  numberOfPlayers = 0;
 			}
 
 
-		} while(liczbaGraczy < 1 || liczbaGraczy > 4);
+		} while(numberOfPlayers < 1 || numberOfPlayers > 4);
 		
-		return liczbaGraczy;
+		return numberOfPlayers;
 	}
 	
-	public static List<String> pobierzListeImionGraczy(int liczbaGraczy) {
+	public static List<String> getPlayersNames(int numberOfPlayers) {
 		Scanner scan = new Scanner(System.in);
-		List<String> imionaGraczy = new ArrayList<String>();
+		List<String> playersNames = new ArrayList<String>();
 		System.out.println("Wprowadz imiona dla graczy (nie więcej niż 20 znaków)");
-		for (int i=0; i<liczbaGraczy; i++) {
-			String imie;
+		for (int i=0; i<numberOfPlayers; i++) {
+			String name;
 			do {
 				System.out.print("Gracz numer " + (i+1) + ": ");
-				imie = scan.nextLine();
-			} while (imie.length() < 1 || imie.length() > 20);
+				name = scan.nextLine();
+			} while (name.length() < 1 || name.length() > 20);
 			
-			imionaGraczy.add(imie);
+			playersNames.add(name);
 		}
-		return imionaGraczy;
+		return playersNames;
 		
 	}
 	
 	public static void main(String[] args) {
 		
 		
-		int liczbaGraczy = pobierzLiczbeGraczy();
+		int numberOfPlayers = getNumberOfPlayers();
 		
-		List<String> imionaGraczy = pobierzListeImionGraczy(liczbaGraczy);
+		List<String> playersNames = getPlayersNames(numberOfPlayers);
 		
-		GameCore nowaGra = new GameCore(liczbaGraczy, imionaGraczy);
+		GameCore newGame = new GameCore(numberOfPlayers, playersNames);
 		
-		while(nowaGra.isOn()) {
+		while(newGame.isOn()) {
 			
-			int liczbaKoni = 10;
-			int dlugoscDystansu = 100;
-			nowaGra.newRace(dlugoscDystansu, liczbaKoni); //TODO z tym też coś ogarnąć!
+			int numberOfHorses = 10;
+			int distanceLength = 100;
+			newGame.newRace(distanceLength, numberOfHorses); //TODO z tym też coś ogarnąć!
 			
 			System.out.print("\n\nW wyścigu udział biorą:\n");
-			pokazUczestnikowWyscigu(nowaGra.getCurrentRace());
+			showRaceMembers(newGame.getCurrentRace());
 			
-			for (Player gracz : nowaGra.getPlayers()) {
+			for (Player player : newGame.getPlayers()) {
 		
 				System.out.println("\n--------------------------");
-				System.out.println("Gracz: " + gracz.getName());
-				System.out.println("Twoja gotowka: " + gracz.getPoints());
+				System.out.println("Gracz: " + player.getName());
+				System.out.println("Twoja gotowka: " + player.getPoints());
 				
-				double stawka = pobierzStawke(gracz);
+				double bid = getBid(player);
 				
-				if(stawka > 0) {
-					int numerObstawionegoKonia = pobierzNumerKonia(gracz, liczbaKoni);
-					Horse obstawionyKon = nowaGra.getCurrentRace().getHorsesList().get(numerObstawionegoKonia - 1);
-					nowaGra.getCurrentRace().placeABet(gracz, obstawionyKon, stawka);
+				if(bid > 0) {
+					int numerObstawionegoKonia = getHorseNumber(player, numberOfHorses);
+					Horse obstawionyKon = newGame.getCurrentRace().getHorsesList().get(numerObstawionegoKonia - 1);
+					newGame.getCurrentRace().placeABet(player, obstawionyKon, bid);
 						
 				}
 				else {
@@ -125,9 +125,9 @@ public class App {
 				
 			}
 			
-			nowaGra.startRace();
+			newGame.startRace();
 	
-			pokazPodsumowanieWyscigu(nowaGra.getCurrentRace());
+			showRaceSummary(newGame.getCurrentRace());
 			
 			System.out.println("\nRozpoczyna się następny wyścig...");
 			scan.nextLine();
@@ -139,7 +139,7 @@ public class App {
 		
 	}
 
-	private static int pobierzNumerKonia(Player gracz, int liczbaKoni) {
+	private static int getHorseNumber(Player player, int numberOfHorses) {
 		int numerObstawionegoKonia;
 		do {
 			System.out.print("Stawiam na konia nr: ");
@@ -151,26 +151,26 @@ public class App {
 				  numerObstawionegoKonia = 0;
 				}
 			
-		} while (numerObstawionegoKonia > liczbaKoni || numerObstawionegoKonia < 1);
+		} while (numerObstawionegoKonia > numberOfHorses || numerObstawionegoKonia < 1);
 		
 		return numerObstawionegoKonia;
 	}
 
-	private static double pobierzStawke(Player gracz) {
-		double stawka;
+	private static double getBid(Player player) {
+		double bid;
 		do {
 			System.out.print("Stawiam gotówki (wpisz 0 jeżeli nie chcesz grać w tej rundzie): ");
 			
 			try {
-				stawka = Double.parseDouble(scan.nextLine());
+				bid = Double.parseDouble(scan.nextLine());
 				}
 				catch(NumberFormatException e) {
-					stawka = -1;
+					bid = -1;
 				}
 			
-		} while (stawka < 0 || stawka > gracz.getPoints());
+		} while (bid < 0 || bid > player.getPoints());
 		
-		return stawka;
+		return bid;
 	}
 
 }

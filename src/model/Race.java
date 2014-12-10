@@ -74,7 +74,7 @@ public class Race {
 			System.out.println("---------- " + step + " --------------");
 			for (int i=0; i<this.horses.size(); i++) {
 				Horse k = this.horses.get(i);
-				System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
+				System.out.println((i+1) + ". " + k.getName() + " " + k.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
 				
 			}
 			
@@ -93,7 +93,7 @@ public class Race {
 		System.out.println("----------  --------------");
 		for (int i=0; i<this.horses.size(); i++) {
 			Horse k = this.horses.get(i);
-			System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
+			System.out.println((i+1) + ". " + k.getName() + " " + k.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
 			
 		}
 		
@@ -106,7 +106,7 @@ public class Race {
 				
 				
 			//Jeżeli okaże się że dany kuń pokonał dystans wyścigu, czyli wygrał
-			if(k.getPozycja() >= this.distance) {
+			if(k.getPosition() >= this.distance) {
 				this.raceWinner = k;
 				this.isOn = false;
 				break;

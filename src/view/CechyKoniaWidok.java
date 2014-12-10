@@ -16,29 +16,29 @@ public class CechyKoniaWidok extends JPanel implements Runnable {
 	public CechyKoniaWidok(Horse kon) {
 		setLayout(null);
 		
-		JLabel lblImieKonia = new JLabel(kon.getNazwa());
+		JLabel lblImieKonia = new JLabel(kon.getName());
 		lblImieKonia.setBounds(15, 10, 168, 14);
 		add(lblImieKonia);
 		
-		JLabel lblWiekKonia = new JLabel(Integer.toString(kon.getWiek()));
+		JLabel lblWiekKonia = new JLabel(Integer.toString(kon.getAge()));
 		lblWiekKonia.setBounds(95, 105, 46, 14);
 		add(lblWiekKonia);
 
 		JProgressBar progBarSzczescie = new JProgressBar();
 		progBarSzczescie.setMaximum(10);
-		progBarSzczescie.setValue((int)kon.getSzczescie());
+		progBarSzczescie.setValue((int)kon.getLuck());
 		progBarSzczescie.setBounds(95, 120, 93, 14);
 		add(progBarSzczescie);
 		
 		JProgressBar progBarWytrzymalosc = new JProgressBar();
 		progBarWytrzymalosc.setMaximum(10);
-		progBarWytrzymalosc.setValue((int)kon.getWytrzymalosc());
+		progBarWytrzymalosc.setValue((int)kon.getStrength());
 		progBarWytrzymalosc.setBounds(95, 135, 93, 14);
 		add(progBarWytrzymalosc);
 		
 		JProgressBar progBarSzybkosc = new JProgressBar();
 		progBarSzybkosc.setMaximum(10);
-		progBarSzybkosc.setValue((int)kon.getSzybkosc());
+		progBarSzybkosc.setValue((int)kon.getSpeed());
 		progBarSzybkosc.setBounds(95, 150, 93, 14);
 		add(progBarSzybkosc);
 		

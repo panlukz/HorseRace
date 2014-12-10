@@ -4,103 +4,103 @@ import java.util.Random;
 
 public class Horse {
 
-	private String nazwa;
+	private String name;
 
-	private double szybkosc;
-	private double wytrzymalosc;
-	private double szczescie;
-	private int wiek;
-	private boolean czyKontuzjowany;
-	private double pozycja;
+	private double speed;
+	private double strength;
+	private double luck;
+	private int age;
+	private boolean isInjured;
+	private double position;
 
-	private HorseNames imionaKoni = HorseNames.getInstance();
+	private HorseNames horseNames = HorseNames.getInstance();
 
 	public Horse() {
 		Random generator = new Random();
-		this.czyKontuzjowany = false;
-		this.nazwa = imionaKoni.generateName();
-		this.pozycja = 0;
-		this.wiek = generator.nextInt(20) + 5;
-		this.szybkosc = generator.nextInt(6) + 5;
-		this.wytrzymalosc = generator.nextInt(9) + 2;
-		this.szczescie = generator.nextInt(9) + 2;
+		this.isInjured = false;
+		this.name = horseNames.generateName();
+		this.position = 0;
+		this.age = generator.nextInt(20) + 5;
+		this.speed = generator.nextInt(6) + 5;
+		this.strength = generator.nextInt(9) + 2;
+		this.luck = generator.nextInt(9) + 2;
 	}
 
-	public double getPozycja() {
-		return this.pozycja;
+	public double getPosition() {
+		return this.position;
 	}
 
-	public void setPozycja(double pozycja) {
-		this.pozycja = pozycja;
+	public void setPosition(double position) {
+		this.position = position;
 	}
 
-	public double getSzybkosc() {
-		return this.szybkosc;
+	public double getSpeed() {
+		return this.speed;
 	}
 
-	public void setSzybkosc(double s) {
-		this.szybkosc = s;
+	public void setSpeed(double s) {
+		this.speed = s;
 	}
 
-	public double getWytrzymalosc() {
-		return this.wytrzymalosc;
+	public double getStrength() {
+		return this.strength;
 	}
 
-	public double getSzczescie() {
-		return this.szczescie;
+	public double getLuck() {
+		return this.luck;
 	}
 
-	public int getWiek() {
-		return this.wiek;
+	public int getAge() {
+		return this.age;
 	}
 
-	public String getNazwa() {
-		return this.nazwa;
+	public String getName() {
+		return this.name;
 	}
 
-	public void zlapalKontuzje() {
-		this.czyKontuzjowany = true;
-		this.szybkosc = 1;
+	public void gotInjured() {
+		this.isInjured = true;
+		this.speed = 1;
 	}
 
-	public boolean getCzyKontuzjowany() {
-		return this.czyKontuzjowany;
+	public boolean getIsInjured() {
+		return this.isInjured;
 	}
 
 	@Override
 	public String toString() {
-		return this.nazwa;
+		return this.name;
 	}
 
 	// ///////////////////Nowe metody, przeprowadzam całą logikę ruchu do konia:
 
-	private double obliczMnoznikWytrzymalosci(double dystansCalkowity) {
+	private double computeStrengthMuliplier(double totalDistance) {
 		// Obliczamy mnożnik dystansu
-		double przebiegnietyDystans = this.getPozycja() / dystansCalkowity;
-		double mnoznikWytrzymalosci = 1;
+		double distance = this.getPosition() / totalDistance;
+		double strengthMultiplier = 1;
 
-		if ((przebiegnietyDystans > 0.5) && (this.getWytrzymalosc() < 9)) {
+		if ((distance > 0.5) && (this.getStrength() < 9)) {
 
-			if ((this.getWytrzymalosc() > 6) && (przebiegnietyDystans > 0.75)) {
-				mnoznikWytrzymalosci = 0.7;
+			if ((this.getStrength() > 6) && (distance > 0.75)) {
+				strengthMultiplier = 0.7;
 			}
 
-			else if ((this.getWytrzymalosc() > 4)
-					&& (this.getWytrzymalosc() < 6)) {
-				mnoznikWytrzymalosci = 0.7;
+			else if ((this.getStrength() > 4)
+					&& (this.getStrength() < 6)) {
+				strengthMultiplier = 0.7;
 			}
 
-			else if ((this.getWytrzymalosc() < 4)) {
-				mnoznikWytrzymalosci = 0.5;
+			else if ((this.getStrength() < 4)) {
+				strengthMultiplier = 0.5;
 			}
 
 		}
-		return mnoznikWytrzymalosci;
+		return strengthMultiplier;
 	}
 
 	private boolean czyZlapieKontuzje() {
 		// Obliczamy kontuzję:
-		if ((this.getWiek() > 15) && (this.getSzczescie() < 5)
+		if ((this.getAge() > 15) && (this.getLuck() < 5)
 				&& (new Random().nextInt(100) == 5)) {
 			return true;
 		}
@@ -108,20 +108,20 @@ public class Horse {
 		return false;
 	}
 
-	public void doMove(double dystansCalkowity) {
+	public void doMove(double totalDistance) {
 
-		double mnoznikWytrzymalosci = obliczMnoznikWytrzymalosci(dystansCalkowity);
+		double strengthMultiplier = computeStrengthMuliplier(totalDistance);
 		
 		if(czyZlapieKontuzje())
-			this.zlapalKontuzje();
+			this.gotInjured();
 		
 		
-		double nowaPozycja = this.getPozycja()
-				+ (this.getSzybkosc() / 10.0) * mnoznikWytrzymalosci; // TODO 1
+		double newPosition = this.getPosition()
+				+ (this.getSpeed() / 10.0) * strengthMultiplier; // TODO 1
 																		// zamienic
 																		// na
 																		// warunek...
-		this.setPozycja(nowaPozycja);
+		this.setPosition(newPosition);
 
 	}
 
