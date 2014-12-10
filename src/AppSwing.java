@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import model.Gra;
-import model.Wyscig;
-import model.Kon;
+import model.GameCore;
+import model.Race;
+import model.Horse;
 import view.PobieranieImionWidok;
 import view.WyscigWidok;
 import view.PokazKonieWidok;
@@ -14,7 +14,7 @@ import view.PokazKonieWidok;
 
 public class AppSwing extends JFrame{
 
-	private Gra nowaGra;
+	private GameCore nowaGra;
 	
 	public AppSwing() {
 		
@@ -36,12 +36,12 @@ public class AppSwing extends JFrame{
 		List<String> gracze = new ArrayList();
 		gracze.add("kupa");
 		gracze.add("zupa");
-		Gra mokap = new Gra(2, gracze);
-		mokap.nowyWyscig(600, 9);
+		GameCore mokap = new GameCore(2, gracze);
+		mokap.newRace(600, 9);
 		
 		
 		//pokazWyscig(mokap.getAktualnyWyscig());
-		pokazKonie(mokap.getAktualnyWyscig());
+		pokazKonie(mokap.getCurrentRace());
 	}
 	
 	public void pokazPobieranieImionGraczy() {
@@ -49,14 +49,14 @@ public class AppSwing extends JFrame{
 		this.add(new PobieranieImionWidok());
 	}
 	
-	public void pokazWyscig(Wyscig wyscig) {
+	public void pokazWyscig(Race wyscig) {
 		//this.removeAll();
 		this.add(new WyscigWidok(wyscig));
 	}
 	
-	public void pokazKonie(Wyscig wyscig) {
+	public void pokazKonie(Race wyscig) {
 		//this.removeAll();
-		this.add(new PokazKonieWidok(wyscig.ListaKoni()));
+		this.add(new PokazKonieWidok(wyscig.getHorsesList()));
 	}
 
 	public static void main(String[] args) {

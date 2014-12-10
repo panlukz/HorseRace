@@ -1,27 +1,27 @@
 package model;
 
-public class Zaklad {
+public class Bet {
 
-	private Gracz gracz;
-	private Kon kon;
-	private double stawka;
+	private Player player;
+	private Horse horse;
+	private double bid;
 	
-	public Zaklad(Gracz g, Kon k, double s) {
-		this.gracz = g;
-		this.kon = k;
-		this.stawka = s;
+	public Bet(Player g, Horse k, double s) {
+		this.player = g;
+		this.horse = k;
+		this.bid = s;
 	}
 	
-	public Gracz getGracz() {
-		return this.gracz;
+	public Player getPlayer() {
+		return this.player;
 	}
 	
-	public Kon getKon() {
-		return this.kon;
+	public Horse getHorse() {
+		return this.horse;
 	}
 	
-	public double getStawka() {
-		return stawka;
+	public double getBid() {
+		return bid;
 	}
 
 }

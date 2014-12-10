@@ -7,19 +7,19 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import model.Kon;
-import model.Wyscig;
+import model.Horse;
+import model.Race;
 
 public class WyscigWidok extends JPanel implements Runnable {
 
 	private Thread animator;
-	private List<Kon> listaKoni;
-	private Wyscig wyscig;
+	private List<Horse> listaKoni;
+	private Race wyscig;
 	KonIkona konIkona;
 	
-	public WyscigWidok(Wyscig w) {
+	public WyscigWidok(Race w) {
 		this.wyscig = w;
-		listaKoni = wyscig.ListaKoni();
+		listaKoni = wyscig.getHorsesList();
 		konIkona = new KonIkona();
 	}
 	
@@ -38,7 +38,7 @@ public class WyscigWidok extends JPanel implements Runnable {
 		Graphics2D g2d = (Graphics2D)g;
 		
 		for (int i=0; i<listaKoni.size(); i++) {
-			Kon kon = listaKoni.get(i);
+			Horse kon = listaKoni.get(i);
 			
 			
 			g2d.drawImage(konIkona.nastepnaKlatka(), (int)kon.getPozycja(), (100*i), this);
@@ -48,8 +48,8 @@ public class WyscigWidok extends JPanel implements Runnable {
 
 	@Override
 	public void run() {
-		while (this.wyscig.CzyTrwa()) {
-			this.wyscig.NastepnyRuch();
+		while (this.wyscig.isOn()) {
+			this.wyscig.nextMove();
 			repaint();
 			
             try {

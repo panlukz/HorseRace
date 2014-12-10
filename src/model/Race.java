@@ -6,74 +6,74 @@ import java.util.Random;
 
 
 
-public class Wyscig {
+public class Race {
 
-	private double dystans;
-	private List<Kon> listaKoni;
-	private boolean czyTrwa;
-	private Kon zwyciezcaWyscigu;
-	private List<Zaklad> listaZakladow;
-	private double mnoznikStawki = 3;
+	private double distance;
+	private List<Horse> horses;
+	private boolean isOn;
+	private Horse raceWinner;
+	private List<Bet> bets;
+	private double bidMultiplier = 3;
 	
-	public Wyscig(double dlugoscDystansu, int liczbaKoni) {
-		this.listaZakladow = new ArrayList<Zaklad>();
-		this.listaKoni = new ArrayList<Kon>();
-		this.czyTrwa = true;		
+	public Race(double distanceLenght, int horsesCount) {
+		this.bets = new ArrayList<Bet>();
+		this.horses = new ArrayList<Horse>();
+		this.isOn = true;		
 		
-		this.dodajKonie(liczbaKoni);
-		this.dystans = dlugoscDystansu;
+		this.addHorses(horsesCount);
+		this.distance = distanceLenght;
 		
 	}
 	
-	public double getMnoznikStawki() {
-		return this.mnoznikStawki;
+	public double getBidMultiplier() {
+		return this.bidMultiplier;
 	}
 	
-	public void setMnoznikStawki(double m) {
-		this.mnoznikStawki = m;
+	public void setBidMultiplier(double m) {
+		this.bidMultiplier = m;
 	}
 	
-	public void zlozZaklad(Gracz g, Kon k, double s) {
-		listaZakladow.add(new Zaklad(g, k, s));
+	public void placeABet(Player g, Horse k, double s) {
+		bets.add(new Bet(g, k, s));
 	}
 	
-	public List<Zaklad> getListaZakladow() {
-		return this.listaZakladow;
+	public List<Bet> getBetList() {
+		return this.bets;
 	}
 	
-	private void dodajKonie(int liczbaKoni) {
-		for (int i = 0; i < liczbaKoni; i++)
-			this.listaKoni.add(new Kon());
+	private void addHorses(int horsesCount) {
+		for (int i = 0; i < horsesCount; i++)
+			this.horses.add(new Horse());
 	}
 
-	public double getDystans() {
-		return dystans;
+	public double getDistance() {
+		return distance;
 	}
 	
-	public int getIloscKoni() {
-		return this.listaKoni.size();
+	public int getHorsesCount() {
+		return this.horses.size();
 	}
 	
-	public boolean CzyTrwa() {
-		return czyTrwa;
+	public boolean isOn() {
+		return isOn;
 	}
 	
-	public Kon getZwyciezcaWyscigu() {
-		return zwyciezcaWyscigu;
+	public Horse getRaceWinner() {
+		return raceWinner;
 	}
 	
-	public List<Kon> ListaKoni() {
-		return listaKoni;
+	public List<Horse> getHorsesList() {
+		return horses;
 	}
 	
 	public void start() {
 		int step = 1;
-		while(this.czyTrwa) {
-			this.NastepnyRuch();
+		while(this.isOn) {
+			this.nextMove();
 			
 			System.out.println("---------- " + step + " --------------");
-			for (int i=0; i<this.listaKoni.size(); i++) {
-				Kon k = this.listaKoni.get(i);
+			for (int i=0; i<this.horses.size(); i++) {
+				Horse k = this.horses.get(i);
 				System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
 				
 			}
@@ -88,11 +88,11 @@ public class Wyscig {
 		}
 	}
 
-	public void NastepnyRuch() {
+	public void nextMove() {
 		
 		System.out.println("----------  --------------");
-		for (int i=0; i<this.listaKoni.size(); i++) {
-			Kon k = this.listaKoni.get(i);
+		for (int i=0; i<this.horses.size(); i++) {
+			Horse k = this.horses.get(i);
 			System.out.println((i+1) + ". " + k.getNazwa() + " " + k.getPozycja()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
 			
 		}
@@ -100,15 +100,15 @@ public class Wyscig {
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
 		// oczywiście biorąc pod uwagę kryteria
 		Random losowa = new Random();
-		for (Kon k : listaKoni) {
+		for (Horse k : horses) {
 			
-			k.doMove(this.dystans);
+			k.doMove(this.distance);
 				
 				
 			//Jeżeli okaże się że dany kuń pokonał dystans wyścigu, czyli wygrał
-			if(k.getPozycja() >= this.dystans) {
-				this.zwyciezcaWyscigu = k;
-				this.czyTrwa = false;
+			if(k.getPozycja() >= this.distance) {
+				this.raceWinner = k;
+				this.isOn = false;
 				break;
 			}
 		}

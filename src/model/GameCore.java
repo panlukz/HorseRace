@@ -9,70 +9,70 @@ import java.util.List;
 
 import java.util.Scanner;
 
-public class Gra {
+public class GameCore {
 	
 
-	private List<Gracz> listaGraczy;
-	private Wyscig aktualnyWyscig;
-	private Kon obstawionyKon;
-	private boolean czyTrwa;
-	private Gracz aktualnyGracz;
+	private List<Player> players;
+	private Race currentRace;
+	private Horse obstawionyKon;
+	private boolean isOn;
+	private Player currentPlayer;
 	
 	
-	public Gra(int iloscGraczy, List<String> imionaGraczy) {
-		this.listaGraczy = new ArrayList<Gracz>();
+	public GameCore(int playersCount, List<String> playersNames) {
+		this.players = new ArrayList<Player>();
 		
-		for(int i=0; i<iloscGraczy; i++)
-			this.listaGraczy.add(new Gracz(imionaGraczy.get(i)));
+		for(int i=0; i<playersCount; i++)
+			this.players.add(new Player(playersNames.get(i)));
 		
-		this.aktualnyGracz = this.listaGraczy.get(0);
+		this.currentPlayer = this.players.get(0);
 				
-		czyTrwa = true;
+		isOn = true;
 	}
 	
-	public List<Gracz> getListaGraczy() {
-		return this.listaGraczy;
+	public List<Player> getPlayers() {
+		return this.players;
 	}
 	
-	public Wyscig getAktualnyWyscig() {
-		return this.aktualnyWyscig;
+	public Race getCurrentRace() {
+		return this.currentRace;
 	}
 	
-	public Kon getObstawionyKon() {
+	public Horse getObstawionyKon() {
 		return this.obstawionyKon;
 	}
 	
-	public boolean CzyTrwa() {
-		return this.czyTrwa;
+	public boolean isOn() {	
+		return this.isOn;
 	}
 	
-	public Gracz getAktualnyGracz() {
-		return this.aktualnyGracz;
+	public Player getCurrentPlayer() {
+		return this.currentPlayer;
 	}
 	
 
 	
-	public void nowyWyscig(double dystans, int liczbaKoni) {
-		this.aktualnyWyscig =  new Wyscig(dystans, liczbaKoni);
+	public void newRace(double distance, int horseCount) {
+		this.currentRace =  new Race(distance, horseCount);
 	}
 	
-	public List<Kon> getUczestnicyWyscigu() {
-		return this.aktualnyWyscig.ListaKoni();
+	public List<Horse> getRaceMembers() {
+		return this.currentRace.getHorsesList();
 	}
 	
-	public void nastepnyGracz() {
-		int indexAktualnegoGracza = this.listaGraczy.indexOf(aktualnyGracz);
+	public void nextPlayer() {
+		int currentPlayerIndex = this.players.indexOf(currentPlayer);
 		
-		if(indexAktualnegoGracza + 1 < this.listaGraczy.size()) {
-			this.aktualnyGracz = this.listaGraczy.get(indexAktualnegoGracza + 1);
+		if(currentPlayerIndex + 1 < this.players.size()) {
+			this.currentPlayer = this.players.get(currentPlayerIndex + 1);
 		}
 		else
-			this.aktualnyGracz = this.listaGraczy.get(0);
+			this.currentPlayer = this.players.get(0);
 	}
 	
-	private boolean sprawdzCzyKoniec() {
-		for (Gracz gracz : this.listaGraczy) {
-			if (gracz.getPunkty() > 0)
+	private boolean checkIfEnd() {
+		for (Player gracz : this.players) {
+			if (gracz.getPoints() > 0)
 				return false;
 		}
 		
@@ -80,19 +80,19 @@ public class Gra {
 	}
 	
 	
-	public void startWyscigu() {
+	public void startRace() {
 		
-		this.aktualnyWyscig.start();
+		this.currentRace.start();
 		
-		for (Zaklad zaklad : this.aktualnyWyscig.getListaZakladow()) {
+		for (Bet bet : this.currentRace.getBetList()) {
 			
-			if(this.aktualnyWyscig.getZwyciezcaWyscigu() == zaklad.getKon())
-				zaklad.getGracz().dodajPunkty(zaklad.getStawka() * this.aktualnyWyscig.getMnoznikStawki());
+			if(this.currentRace.getRaceWinner() == bet.getHorse())
+				bet.getPlayer().addPoints(bet.getBid() * this.currentRace.getBidMultiplier());
 			else {
-				zaklad.getGracz().odejmijPunkty(zaklad.getStawka());
+				bet.getPlayer().subtractPoints(bet.getBid());
 				
-				if(zaklad.getGracz().getPunkty() <= 0)
-					this.listaGraczy.remove(zaklad.getGracz());
+				if(bet.getPlayer().getPoints() <= 0)
+					this.players.remove(bet.getPlayer());
 			}
 				
 			
@@ -100,8 +100,8 @@ public class Gra {
 		}
 		
 		
-		if(sprawdzCzyKoniec())
-			this.czyTrwa = false;
+		if(checkIfEnd())
+			this.isOn = false;
 		
 	}
 }

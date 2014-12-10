@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import model.Kon;
+import model.Horse;
 import javax.swing.JProgressBar;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
@@ -17,13 +17,13 @@ import java.awt.GridBagConstraints;
 
 public class PokazKonieWidok extends JPanel implements Runnable {
 
-	public PokazKonieWidok(List<Kon> listaKoni) {
+	public PokazKonieWidok(List<Horse> listaKoni) {
 		setLayout(null);
 		
 		int kolumna = 0;
 		int wiersz = 0;
 		for (int i=0; i<listaKoni.size(); i++) {
-			Kon kon = listaKoni.get(i);
+			Horse kon = listaKoni.get(i);
 			JPanel cechyKonia = new CechyKoniaWidok(kon);
 			
 			if(i!=0 && i%3 == 0) {

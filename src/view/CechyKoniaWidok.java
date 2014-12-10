@@ -7,13 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import model.Kon;
+import model.Horse;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
 public class CechyKoniaWidok extends JPanel implements Runnable {
 
-	public CechyKoniaWidok(Kon kon) {
+	public CechyKoniaWidok(Horse kon) {
 		setLayout(null);
 		
 		JLabel lblImieKonia = new JLabel(kon.getNazwa());

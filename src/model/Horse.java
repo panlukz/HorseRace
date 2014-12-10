@@ -2,7 +2,7 @@ package model;
 
 import java.util.Random;
 
-public class Kon {
+public class Horse {
 
 	private String nazwa;
 
@@ -13,9 +13,9 @@ public class Kon {
 	private boolean czyKontuzjowany;
 	private double pozycja;
 
-	private ImionaKoni imionaKoni = ImionaKoni.getInstance();
+	private HorseNames imionaKoni = HorseNames.getInstance();
 
-	public Kon() {
+	public Horse() {
 		Random generator = new Random();
 		this.czyKontuzjowany = false;
 		this.nazwa = imionaKoni.generateName();

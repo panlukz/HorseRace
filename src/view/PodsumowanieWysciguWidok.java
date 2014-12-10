@@ -5,12 +5,12 @@ import java.util.List;
 import javax.swing.JPanel;
 
 
-import model.Kon;
+import model.Horse;
 
 
 public class PodsumowanieWysciguWidok extends JPanel implements Runnable {
 
-	public PodsumowanieWysciguWidok(List<Kon> listaKoni) {
+	public PodsumowanieWysciguWidok(List<Horse> listaKoni) {
 		setLayout(null);
 		
 

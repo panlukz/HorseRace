@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ImionaKoni {
+public class HorseNames {
 	
-	private static ImionaKoni instance = new ImionaKoni();
+	private static HorseNames instance = new HorseNames();
 	
 	private List<String> names = new ArrayList<String>();
 	private List<String> nicknames = new ArrayList<String>();
@@ -14,7 +14,7 @@ public class ImionaKoni {
 	private static Random generator = new Random();
 
 	
-	private ImionaKoni() {
+	private HorseNames() {
 		addNames();
 		addNickNames();
 	}
@@ -51,7 +51,7 @@ public class ImionaKoni {
 
 
 
-	public static ImionaKoni getInstance() {
+	public static HorseNames getInstance() {
 		return instance;
 	}
 	
