@@ -94,24 +94,28 @@ public class Race {
 		for (int i=0; i<this.horses.size(); i++) {
 			Horse k = this.horses.get(i);
 			System.out.println((i+1) + ". " + k.getName() + " " + k.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
-			
 		}
 		
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
 		// oczywiście biorąc pod uwagę kryteria
 		Random losowa = new Random();
-		for (Horse k : horses) {
+		for (Horse horse : horses) {
 			
-			k.doMove(this.distance);
+			horse.doMove(this.distance);
 				
-				
-			//Jeżeli okaże się że dany kuń pokonał dystans wyścigu, czyli wygrał
-			if(k.getPosition() >= this.distance) {
-				this.raceWinner = k;
+			if(checkWinner(horse)) {
+				this.raceWinner = horse;
 				this.isOn = false;
 				break;
 			}
 		}
+	}
+	
+	private boolean checkWinner(Horse horse) {
+		if(horse.getPosition() >= this.distance)
+			return true;
+		
+		return false;
 	}
 
 

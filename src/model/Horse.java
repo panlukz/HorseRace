@@ -10,6 +10,7 @@ public class Horse {
 	private double strength;
 	private double luck;
 	private int age;
+	
 	private boolean isInjured;
 	private double position;
 
@@ -30,16 +31,8 @@ public class Horse {
 		return this.position;
 	}
 
-	public void setPosition(double position) {
-		this.position = position;
-	}
-
 	public double getSpeed() {
 		return this.speed;
-	}
-
-	public void setSpeed(double s) {
-		this.speed = s;
 	}
 
 	public double getStrength() {
@@ -58,11 +51,6 @@ public class Horse {
 		return this.name;
 	}
 
-	public void gotInjured() {
-		this.isInjured = true;
-		this.speed = 1;
-	}
-
 	public boolean getIsInjured() {
 		return this.isInjured;
 	}
@@ -70,6 +58,12 @@ public class Horse {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+	
+
+	private void gotInjured() {
+		this.isInjured = true;
+		this.speed = 1;
 	}
 
 	// ///////////////////Nowe metody, przeprowadzam całą logikę ruchu do konia:
@@ -99,7 +93,6 @@ public class Horse {
 	}
 
 	private boolean czyZlapieKontuzje() {
-		// Obliczamy kontuzję:
 		if ((this.getAge() > 15) && (this.getLuck() < 5)
 				&& (new Random().nextInt(100) == 5)) {
 			return true;
@@ -121,8 +114,7 @@ public class Horse {
 																		// zamienic
 																		// na
 																		// warunek...
-		this.setPosition(newPosition);
+		this.position = newPosition;
 
 	}
-
 }
