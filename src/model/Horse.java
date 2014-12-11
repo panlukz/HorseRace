@@ -7,7 +7,7 @@ public class Horse {
 	private String name;
 
 	private double speed;
-	private double strength;
+	private double stamina;
 	private double luck;
 	private int age;
 	
@@ -23,7 +23,7 @@ public class Horse {
 		this.position = 0;
 		this.age = generator.nextInt(20) + 5;
 		this.speed = generator.nextInt(6) + 5;
-		this.strength = generator.nextInt(9) + 2;
+		this.stamina = generator.nextInt(9) + 2;
 		this.luck = generator.nextInt(9) + 2;
 	}
 
@@ -35,8 +35,8 @@ public class Horse {
 		return this.speed;
 	}
 
-	public double getStrength() {
-		return this.strength;
+	public double getStamina() {
+		return this.stamina;
 	}
 
 	public double getLuck() {
@@ -73,18 +73,18 @@ public class Horse {
 		double distance = this.getPosition() / totalDistance;
 		double strengthMultiplier = 1;
 
-		if ((distance > 0.5) && (this.getStrength() < 9)) {
+		if ((distance > 0.5) && (this.getStamina() < 9)) {
 
-			if ((this.getStrength() > 6) && (distance > 0.75)) {
+			if ((this.getStamina() > 6) && (distance > 0.75)) {
 				strengthMultiplier = 0.7;
 			}
 
-			else if ((this.getStrength() > 4)
-					&& (this.getStrength() < 6)) {
+			else if ((this.getStamina() > 4)
+					&& (this.getStamina() < 6)) {
 				strengthMultiplier = 0.7;
 			}
 
-			else if ((this.getStrength() < 4)) {
+			else if ((this.getStamina() < 4)) {
 				strengthMultiplier = 0.5;
 			}
 

@@ -32,7 +32,7 @@ public class CechyKoniaWidok extends JPanel implements Runnable {
 		
 		JProgressBar progBarWytrzymalosc = new JProgressBar();
 		progBarWytrzymalosc.setMaximum(10);
-		progBarWytrzymalosc.setValue((int)kon.getStrength());
+		progBarWytrzymalosc.setValue((int)kon.getStamina());
 		progBarWytrzymalosc.setBounds(95, 135, 93, 14);
 		add(progBarWytrzymalosc);
 		
