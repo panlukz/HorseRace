@@ -27,7 +27,5 @@ public class Player {
 	public void addPoints(double p) {
 		this.points += p;
 	}
-	
-	
 
 }

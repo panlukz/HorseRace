@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import model.GameCore;
+import model.GameLogic;
 import model.Race;
 import model.Horse;
 import view.PobieranieImionWidok;
@@ -14,7 +14,7 @@ import view.PokazKonieWidok;
 
 public class AppSwing extends JFrame{
 
-	private GameCore nowaGra;
+	private GameLogic nowaGra;
 	
 	public AppSwing() {
 		
@@ -36,7 +36,7 @@ public class AppSwing extends JFrame{
 		List<String> gracze = new ArrayList();
 		gracze.add("kupa");
 		gracze.add("zupa");
-		GameCore mokap = new GameCore(2, gracze);
+		GameLogic mokap = new GameLogic(2, gracze);
 		mokap.newRace(600, 9);
 		
 		

@@ -2,9 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.GameCore;
+import model.GameLogic;
 import model.Player;
-import model.HorseNames;
 import model.Horse;
 import model.Race;
 import model.Bet;
@@ -24,7 +23,7 @@ public class App {
 			
 			Horse k = race.getHorsesList().get(i);
 			System.out.println("-------------------------------------------------------------------------------------------------");
-			System.out.println((i+1) + ". Kon " + k.getName() + "\tWytrzymalosc: " + k.getStrength() +
+			System.out.println((i+1) + ". Kon " + k.getName() + "\tWytrzymalosc: " + k.getStamina() +
 					"\tSzybkosc: " + k.getSpeed() + "\tSzczescie: " + k.getLuck() + "\tWiek: " + k.getAge());
 		
 		}
@@ -93,11 +92,11 @@ public class App {
 		
 		List<String> playersNames = getPlayersNames(numberOfPlayers);
 		
-		GameCore newGame = new GameCore(numberOfPlayers, playersNames);
+		GameLogic newGame = new GameLogic(numberOfPlayers, playersNames);
 		
 		while(newGame.isOn()) {
 			
-			int numberOfHorses = 10;
+			int numberOfHorses = 2;
 			int distanceLength = 100;
 			newGame.newRace(distanceLength, numberOfHorses); //TODO z tym też coś ogarnąć!
 			

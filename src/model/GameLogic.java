@@ -9,7 +9,7 @@ import java.util.List;
 
 import java.util.Scanner;
 
-public class GameCore {
+public class GameLogic {
 	
 
 	private List<Player> players;
@@ -19,7 +19,7 @@ public class GameCore {
 	private Player currentPlayer;
 	
 	
-	public GameCore(int playersCount, List<String> playersNames) {
+	public GameLogic(int playersCount, List<String> playersNames) {
 		this.players = new ArrayList<Player>();
 		
 		for(int i=0; i<playersCount; i++)

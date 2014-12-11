@@ -97,7 +97,6 @@ public class Race {
 		}
 		
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
-		// oczywiście biorąc pod uwagę kryteria
 		Random losowa = new Random();
 		for (Horse horse : horses) {
 			
