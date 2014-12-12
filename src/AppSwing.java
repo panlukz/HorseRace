@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import model.GameLogic;
-import model.Race;
-import model.Horse;
+import logic.GameLogic;
+import logic.Horse;
+import logic.Race;
 import view.PobieranieImionWidok;
 import view.WyscigWidok;
 import view.PokazKonieWidok;

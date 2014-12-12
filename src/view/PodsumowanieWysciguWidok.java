@@ -4,8 +4,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-
-import model.Horse;
+import logic.Horse;
 
 
 public class PodsumowanieWysciguWidok extends JPanel implements Runnable {

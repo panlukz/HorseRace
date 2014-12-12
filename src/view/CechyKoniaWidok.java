@@ -7,7 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import model.Horse;
+import logic.Horse;
+
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 

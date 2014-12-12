@@ -7,8 +7,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import model.Horse;
-import model.Race;
+import logic.Horse;
+import logic.Race;
 
 public class WyscigWidok extends JPanel implements Runnable {
 

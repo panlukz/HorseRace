@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.GameLogic;
-import model.Player;
-import model.Horse;
-import model.Race;
-import model.Bet;
+import logic.Bet;
+import logic.GameLogic;
+import logic.Horse;
+import logic.Player;
+import logic.Race;
 
 
 public class App {

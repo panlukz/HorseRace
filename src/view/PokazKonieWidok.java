@@ -7,11 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import model.Horse;
+import logic.Horse;
+
 import javax.swing.JProgressBar;
+
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+
 import javax.swing.BoxLayout;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
