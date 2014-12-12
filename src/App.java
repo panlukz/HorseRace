@@ -123,7 +123,6 @@ public class App {
 	}
 	
 	public static List<String> getPlayersNames(int numberOfPlayers) {
-		Scanner scan = new Scanner(System.in);
 		List<String> playersNames = new ArrayList<String>();
 		System.out.println("Wprowadz imiona dla graczy (nie więcej niż 20 znaków)");
 		for (int i=0; i<numberOfPlayers; i++) {
