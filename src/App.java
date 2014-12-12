@@ -31,8 +31,10 @@ public class App {
 			
 			int numberOfHorses = 10;
 			int distanceLength = 100;
-			newGame.newRace(distanceLength, numberOfHorses); //TODO z tym też coś ogarnąć!
-		
+			
+			newGame.newRace(distanceLength, numberOfHorses);
+			//newGame.newRace();
+			
 			for (Player player : newGame.getPlayers()) {
 				clearScreen();
 				System.out.print("\n\nW wyścigu udział biorą:\n");
@@ -70,15 +72,24 @@ public class App {
 		System.out.println("... ale niestety wszystkim graczom skonczyla sie gotowka! :( Game over! Do książek!");
 		
 	}
+	
+	public static String generateSpace(int howManySpace) {
+		String space = new String();
+		for (int i = 0; i < howManySpace; i++) {
+			space += " ";
+		}
+		return space;
+	}
 
 	public static void showRaceMembers(Race race) {
-		
+		System.out.println("Nr\tNazwa" + generateSpace(16) + "Wytrzymałość" + generateSpace(2) + "Szybkość" + generateSpace(2) + "Szczęście" + generateSpace(1) + "Wiek ");
 		for (int i=0; i<race.getHorsesList().size(); i++) {
 			
-			Horse k = race.getHorsesList().get(i);
-			System.out.println("-------------------------------------------------------------------------------------------------");
-			System.out.println((i+1) + ". Kon " + k.getName() + "\tWytrzymalosc: " + k.getStamina() +
-					"\tSzybkosc: " + k.getSpeed() + "\tSzczescie: " + k.getLuck() + "\tWiek: " + k.getAge());
+			Horse h = race.getHorsesList().get(i);
+			
+			System.out.println("---------------------------------------------------------------------");
+			System.out.println((i+1) + "\t" + h.getName() + generateSpace(30 - h.getName().length()) + h.getStamina() +
+					"\t" + h.getSpeed() + "\t" + h.getLuck() + "\t" + h.getAge());
 		
 		}
 		
@@ -138,21 +149,21 @@ public class App {
 		
 	}
 
-	private static int getHorseNumber(Player player, int numberOfHorses) {
-		int numerObstawionegoKonia;
+	private static int getHorseNumber(Player player, int horsesCount) {
+		int betHorseNumber;
 		do {
 			System.out.print("Stawiam na konia nr: ");
 			
 			try {
-				numerObstawionegoKonia = Integer.parseInt(scan.nextLine());
+				betHorseNumber = Integer.parseInt(scan.nextLine());
 				}
 				catch(NumberFormatException e) {
-				  numerObstawionegoKonia = 0;
+				  betHorseNumber = 0;
 				}
 			
-		} while (numerObstawionegoKonia > numberOfHorses || numerObstawionegoKonia < 1);
+		} while (betHorseNumber > horsesCount || betHorseNumber < 1);
 		
-		return numerObstawionegoKonia;
+		return betHorseNumber;
 	}
 
 	private static double getBid(Player player) {
@@ -173,6 +184,7 @@ public class App {
 	}
 	
 	private static void showSplashScreen() {
+		clearScreen(); 
 		System.out.println("            _|\\ _/|_,                           ._|\\_ /|_");
 		System.out.println("	 ,((\\\\``-\\\\\\\\_       HORSE             _////-''//)).");
 		System.out.println("        ,(())      `))\\       RACING           //(('     (()).");
