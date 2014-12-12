@@ -14,7 +14,7 @@ public class GameLogic {
 
 	private List<Player> players;
 	private Race currentRace;
-	private Horse obstawionyKon;
+	private Horse betHorse;
 	private boolean isOn;
 	private Player currentPlayer;
 	
@@ -39,7 +39,7 @@ public class GameLogic {
 	}
 	
 	public Horse getObstawionyKon() {
-		return this.obstawionyKon;
+		return this.betHorse;
 	}
 	
 	public boolean isOn() {	
@@ -49,8 +49,6 @@ public class GameLogic {
 	public Player getCurrentPlayer() {
 		return this.currentPlayer;
 	}
-	
-
 	
 	public void newRace(double distance, int horseCount) {
 		this.currentRace =  new Race(distance, horseCount);
@@ -71,8 +69,8 @@ public class GameLogic {
 	}
 	
 	private boolean checkIfEnd() {
-		for (Player gracz : this.players) {
-			if (gracz.getPoints() > 0)
+		for (Player player : this.players) {
+			if (player.getPoints() > 0)
 				return false;
 		}
 		

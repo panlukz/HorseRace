@@ -14,12 +14,10 @@ public class Horse {
 	private boolean isInjured;
 	private double position;
 
-	private HorseNames horseNames = HorseNames.getInstance();
-
-	public Horse() {
+	public Horse(String n) {
 		Random generator = new Random();
 		this.isInjured = false;
-		this.name = horseNames.generateName();
+		this.name = n;
 		this.position = 0;
 		this.age = generator.nextInt(20) + 5;
 		this.speed = generator.nextInt(6) + 5;
@@ -92,7 +90,7 @@ public class Horse {
 		return strengthMultiplier;
 	}
 
-	private boolean czyZlapieKontuzje() {
+	private boolean ifGetInjured() {
 		if ((this.getAge() > 15) && (this.getLuck() < 5)
 				&& (new Random().nextInt(100) == 5)) {
 			return true;
@@ -105,7 +103,7 @@ public class Horse {
 
 		double strengthMultiplier = computeStrengthMuliplier(totalDistance);
 		
-		if(czyZlapieKontuzje())
+		if(ifGetInjured())
 			this.gotInjured();
 		
 		

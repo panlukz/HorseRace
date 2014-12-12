@@ -5,21 +5,17 @@ import java.util.List;
 import java.util.Random;
 
 public class HorseNames {
-	
-	private static HorseNames instance = new HorseNames();
-	
+		
 	private List<String> names = new ArrayList<String>();
 	private List<String> nicknames = new ArrayList<String>();
 	
 	private static Random generator = new Random();
 
 	
-	private HorseNames() {
+	public HorseNames() {
 		addNames();
 		addNickNames();
 	}
-	
-	
 	
 	private void addNickNames() {
 		names.add("Wiesiek");
@@ -47,12 +43,6 @@ public class HorseNames {
 		nicknames.add("Garbaty");
 		nicknames.add("Dostojny");
 		nicknames.add("Śmiały");
-	}
-
-
-
-	public static HorseNames getInstance() {
-		return instance;
 	}
 	
 	private String generateFirstName() {

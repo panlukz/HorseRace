@@ -42,8 +42,11 @@ public class Race {
 	}
 	
 	private void addHorses(int horsesCount) {
-		for (int i = 0; i < horsesCount; i++)
-			this.horses.add(new Horse());
+		HorseNames horseNames = new HorseNames();
+		for (int i = 0; i < horsesCount; i++) {
+			this.horses.add(new Horse(horseNames.generateName()));
+		}
+			
 	}
 
 	public double getDistance() {

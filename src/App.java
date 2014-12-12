@@ -16,6 +16,60 @@ public class App {
 	}
 	
 	private static Scanner scan = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+		showSplashScreen();
+		
+		int numberOfPlayers = getNumberOfPlayers();
+		
+		List<String> playersNames = getPlayersNames(numberOfPlayers);
+		
+		GameLogic newGame = new GameLogic(numberOfPlayers, playersNames);
+		
+		while(newGame.isOn()) {
+			
+			int numberOfHorses = 10;
+			int distanceLength = 100;
+			newGame.newRace(distanceLength, numberOfHorses); //TODO z tym też coś ogarnąć!
+		
+			for (Player player : newGame.getPlayers()) {
+				clearScreen();
+				System.out.print("\n\nW wyścigu udział biorą:\n");
+				showRaceMembers(newGame.getCurrentRace());
+				
+				System.out.println("\n--------------------------");
+				System.out.println("Gracz: " + player.getName());
+				System.out.println("Twoja gotowka: " + player.getPoints());
+				
+				double bid = getBid(player);
+				
+				if(bid > 0) {
+					int numerObstawionegoKonia = getHorseNumber(player, numberOfHorses);
+					Horse obstawionyKon = newGame.getCurrentRace().getHorsesList().get(numerObstawionegoKonia - 1);
+					newGame.getCurrentRace().placeABet(player, obstawionyKon, bid);
+						
+				}
+				else {
+					System.out.print("Nie bierzesz udziału w tej rundzie...");
+				}
+				
+				
+			}
+			
+			newGame.startRace();
+	
+			showRaceSummary(newGame.getCurrentRace());
+			
+			System.out.println("\nRozpoczyna się następny wyścig...");
+			scan.nextLine();
+			
+			
+		}
+		
+		System.out.println("... ale niestety wszystkim graczom skonczyla sie gotowka! :( Game over! Do książek!");
+		
+	}
 
 	public static void showRaceMembers(Race race) {
 		
@@ -84,59 +138,6 @@ public class App {
 		return playersNames;
 		
 	}
-	
-	public static void main(String[] args) {
-		
-		
-		int numberOfPlayers = getNumberOfPlayers();
-		
-		List<String> playersNames = getPlayersNames(numberOfPlayers);
-		
-		GameLogic newGame = new GameLogic(numberOfPlayers, playersNames);
-		
-		while(newGame.isOn()) {
-			
-			int numberOfHorses = 2;
-			int distanceLength = 100;
-			newGame.newRace(distanceLength, numberOfHorses); //TODO z tym też coś ogarnąć!
-			
-			System.out.print("\n\nW wyścigu udział biorą:\n");
-			showRaceMembers(newGame.getCurrentRace());
-			
-			for (Player player : newGame.getPlayers()) {
-		
-				System.out.println("\n--------------------------");
-				System.out.println("Gracz: " + player.getName());
-				System.out.println("Twoja gotowka: " + player.getPoints());
-				
-				double bid = getBid(player);
-				
-				if(bid > 0) {
-					int numerObstawionegoKonia = getHorseNumber(player, numberOfHorses);
-					Horse obstawionyKon = newGame.getCurrentRace().getHorsesList().get(numerObstawionegoKonia - 1);
-					newGame.getCurrentRace().placeABet(player, obstawionyKon, bid);
-						
-				}
-				else {
-					System.out.print("Nie bierzesz udziału w tej rundzie...");
-				}
-				
-				
-			}
-			
-			newGame.startRace();
-	
-			showRaceSummary(newGame.getCurrentRace());
-			
-			System.out.println("\nRozpoczyna się następny wyścig...");
-			scan.nextLine();
-			
-			
-		}
-		
-		System.out.println("... ale niestety wszystkim graczom skonczyla sie gotowka! :( Game over! Do książek!");
-		
-	}
 
 	private static int getHorseNumber(Player player, int numberOfHorses) {
 		int numerObstawionegoKonia;
@@ -170,6 +171,26 @@ public class App {
 		} while (bid < 0 || bid > player.getPoints());
 		
 		return bid;
+	}
+	
+	private static void showSplashScreen() {
+		System.out.println("            _|\\ _/|_,                           ._|\\_ /|_");
+		System.out.println("	 ,((\\\\``-\\\\\\\\_       HORSE             _////-''//)).");
+		System.out.println("        ,(())      `))\\       RACING           //(('     (()).");
+		System.out.println("      ,(()))        < \\         GAME          / >       ((()).");
+		System.out.println("     ((())'   |        \\                     /        |  `(())).");
+		System.out.println("     )))))     >.__     \\                   /     __.<     (((((");
+		System.out.println("     ((('     /    `-. .d|                  |b. .-'    \\     `)))");
+		System.out.println("             /        `-`'     (enter)              `'-'\\");
+		scan.nextLine();
+		clearScreen();
+	}
+	
+	private static void clearScreen() {
+		for (int i = 0; i < 20; i++) {
+			System.out.println("\n");
+
+		}
 	}
 
 }
