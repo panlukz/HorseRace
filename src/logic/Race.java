@@ -76,8 +76,8 @@ public class Race {
 			
 			System.out.println("---------- " + step + " --------------");
 			for (int i=0; i<this.horses.size(); i++) {
-				Horse k = this.horses.get(i);
-				System.out.println((i+1) + ". " + k.getName() + " " + k.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
+				Horse h = this.horses.get(i);
+				System.out.println((i+1) + ". " + h.getName() + " " + h.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
 				
 			}
 			
@@ -100,7 +100,6 @@ public class Race {
 		}
 		
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
-		Random losowa = new Random();
 		for (Horse horse : horses) {
 			
 			horse.doMove(this.distance);
