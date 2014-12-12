@@ -3,10 +3,6 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
 import java.util.Scanner;
 
 public class GameLogic {
@@ -15,18 +11,14 @@ public class GameLogic {
 	private List<Player> players;
 	private Race currentRace;
 	private Horse betHorse;
-	private boolean isOn;
-	private Player currentPlayer;
-	
+	private boolean isOn;	
 	
 	public GameLogic(int playersCount, List<String> playersNames) {
 		this.players = new ArrayList<Player>();
 		
 		for(int i=0; i<playersCount; i++)
 			this.players.add(new Player(playersNames.get(i)));
-		
-		this.currentPlayer = this.players.get(0);
-				
+					
 		isOn = true;
 	}
 	
@@ -38,16 +30,8 @@ public class GameLogic {
 		return this.currentRace;
 	}
 	
-	public Horse getObstawionyKon() {
-		return this.betHorse;
-	}
-	
 	public boolean isOn() {	
 		return this.isOn;
-	}
-	
-	public Player getCurrentPlayer() {
-		return this.currentPlayer;
 	}
 	
 	public void newRace(double distance, int horseCount) {
@@ -56,16 +40,6 @@ public class GameLogic {
 	
 	public List<Horse> getRaceMembers() {
 		return this.currentRace.getHorsesList();
-	}
-	
-	public void nextPlayer() {
-		int currentPlayerIndex = this.players.indexOf(currentPlayer);
-		
-		if(currentPlayerIndex + 1 < this.players.size()) {
-			this.currentPlayer = this.players.get(currentPlayerIndex + 1);
-		}
-		else
-			this.currentPlayer = this.players.get(0);
 	}
 	
 	private boolean checkIfEnd() {
@@ -92,11 +66,7 @@ public class GameLogic {
 				if(bet.getPlayer().getPoints() <= 0)
 					this.players.remove(bet.getPlayer());
 			}
-				
-			
-			
 		}
-		
 		
 		if(checkIfEnd())
 			this.isOn = false;
