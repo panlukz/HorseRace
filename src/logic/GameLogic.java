@@ -1,16 +1,14 @@
 package logic;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Random;
 
 public class GameLogic {
 	
 
 	private List<Player> players;
 	private Race currentRace;
-	private Horse betHorse;
 	private boolean isOn;	
 	
 	public GameLogic(int playersCount, List<String> playersNames) {
@@ -19,7 +17,7 @@ public class GameLogic {
 		for(int i=0; i<playersCount; i++)
 			this.players.add(new Player(playersNames.get(i)));
 					
-		isOn = true;
+		this.isOn = true;
 	}
 	
 	public List<Player> getPlayers() {
@@ -32,6 +30,13 @@ public class GameLogic {
 	
 	public boolean isOn() {	
 		return this.isOn;
+	}
+	
+	public void newRace() {
+		Random rand = new Random();
+		double distance = rand.nextDouble() * 50 + 80;
+		int horseCount = rand.nextInt(5) + 5;
+		this.currentRace = new Race(distance, horseCount);
 	}
 	
 	public void newRace(double distance, int horseCount) {
