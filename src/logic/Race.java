@@ -74,12 +74,7 @@ public class Race {
 		while(this.isOn) {
 			this.nextMove();
 			
-			System.out.println("---------- " + step + " --------------");
-			for (int i=0; i<this.horses.size(); i++) {
-				Horse h = this.horses.get(i);
-				System.out.println((i+1) + ". " + h.getName() + " " + h.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
-				
-			}
+
 			
 			step++;
 		
@@ -93,12 +88,6 @@ public class Race {
 
 	public void nextMove() {
 		
-		System.out.println("----------  --------------");
-		for (int i=0; i<this.horses.size(); i++) {
-			Horse k = this.horses.get(i);
-			System.out.println((i+1) + ". " + k.getName() + " " + k.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
-		}
-		
 		//Jedziemy pętlą przez wszystkie konie na liście i zmieniamy im pozycję
 		for (Horse horse : horses) {
 			
@@ -107,8 +96,14 @@ public class Race {
 			if(checkWinner(horse)) {
 				this.raceWinner = horse;
 				this.isOn = false;
-				break;
+				//break;
 			}
+		}
+		
+		System.out.println("----------  --------------");
+		for (int i=0; i<this.horses.size(); i++) {
+			Horse k = this.horses.get(i);
+			System.out.println((i+1) + ". " + k.getName() + " " + k.getPosition()); //jedyne co bedzie drukowane do konsoli w okienkowej appce
 		}
 	}
 	
