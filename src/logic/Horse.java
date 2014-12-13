@@ -69,25 +69,25 @@ public class Horse {
 	private double computeStaminaMuliplier(double totalDistance) {
 		// Obliczamy mnożnik dystansu
 		double distance = this.getPosition() / totalDistance;
-		double strengthMultiplier = 1;
+		double staminaMultiplier = 1;
 
 		if ((distance > 0.5) && (this.getStamina() < 9)) {
 
 			if ((this.getStamina() > 6) && (distance > 0.75)) {
-				strengthMultiplier = 0.7;
+				staminaMultiplier = 0.7;
 			}
 
 			else if ((this.getStamina() > 4)
 					&& (this.getStamina() < 6)) {
-				strengthMultiplier = 0.7;
+				staminaMultiplier = 0.7;
 			}
 
 			else if ((this.getStamina() < 4)) {
-				strengthMultiplier = 0.5;
+				staminaMultiplier = 0.5;
 			}
 
 		}
-		return strengthMultiplier;
+		return staminaMultiplier;
 	}
 
 	private boolean ifGetInjured() {
