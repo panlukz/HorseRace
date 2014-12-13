@@ -47,7 +47,7 @@ public class GameLogic {
 		return this.currentRace.getHorsesList();
 	}
 	
-	private boolean checkIfEnd() {
+	private boolean checkIfGameIsEnd() {
 		for (Player player : this.players) {
 			if (player.getPoints() > 0)
 				return false;
@@ -56,7 +56,8 @@ public class GameLogic {
 		return true;
 	}
 	
-	
+	//TODO nazwa tej metody nie do końca przedstawia to co ona robi
+	//     metoda ma sprawdzać wyniki, a ona równiez zmienia punktacje u graczy
 	public void checkRaceResults() {
 				
 		for (Bet bet : this.currentRace.getBetList()) {
@@ -71,7 +72,7 @@ public class GameLogic {
 			}
 		}
 		
-		if(checkIfEnd())
+		if(checkIfGameIsEnd())
 			this.isOn = false;
 		
 	}
