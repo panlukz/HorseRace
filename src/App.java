@@ -59,15 +59,7 @@ public class App {
 				
 			}
 			
-			while(newGame.getCurrentRace().isOn()) {
-				newGame.getCurrentRace().nextMove();
-			
-				try {
-		            Thread.sleep(20);
-		        } 
-		        catch (InterruptedException e) {
-		        }
-			}
+			startCurrentRace(newGame.getCurrentRace());
 			
 			newGame.checkRaceResults();
 	
@@ -89,6 +81,18 @@ public class App {
 			space += " ";
 		}
 		return space;
+	}
+	
+	public static void startCurrentRace(Race race) {
+		while(race.isOn()) {
+			race.nextMove();
+		
+			try {
+	            Thread.sleep(20);
+	        } 
+	        catch (InterruptedException e) {
+	        }
+		}
 	}
 
 	public static void showRaceMembers(Race race) {
