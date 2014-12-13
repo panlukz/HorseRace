@@ -66,7 +66,7 @@ public class Horse {
 
 	// ///////////////////Nowe metody, przeprowadzam całą logikę ruchu do konia:
 
-	private double computeStrengthMuliplier(double totalDistance) {
+	private double computeStaminaMuliplier(double totalDistance) {
 		// Obliczamy mnożnik dystansu
 		double distance = this.getPosition() / totalDistance;
 		double strengthMultiplier = 1;
@@ -101,14 +101,14 @@ public class Horse {
 
 	public void doMove(double totalDistance) {
 
-		double strengthMultiplier = computeStrengthMuliplier(totalDistance);
+		double staminaMultiplier = computeStaminaMuliplier(totalDistance);
 		
 		if(ifGetInjured())
 			this.gotInjured();
 		
 		
 		double newPosition = this.getPosition()
-				+ (this.getSpeed() / 10.0) * strengthMultiplier; // TODO 1
+				+ (this.getSpeed() / 10.0) * staminaMultiplier; // TODO 1
 																		// zamienic
 																		// na
 																		// warunek...
