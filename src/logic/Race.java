@@ -68,23 +68,6 @@ public class Race {
 	public List<Horse> getHorsesList() {
 		return horses;
 	}
-	
-	public void start() {
-		int step = 1;
-		while(this.isOn) {
-			this.nextMove();
-			
-
-			
-			step++;
-		
-			try {
-	            Thread.sleep(20);
-	        } 
-	        catch (InterruptedException e) {
-	        }
-		}
-	}
 
 	public void nextMove() {
 		

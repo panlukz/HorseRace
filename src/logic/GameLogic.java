@@ -57,10 +57,8 @@ public class GameLogic {
 	}
 	
 	
-	public void startRace() {
-		
-		this.currentRace.start();
-		
+	public void checkRaceResults() {
+				
 		for (Bet bet : this.currentRace.getBetList()) {
 			
 			if(this.currentRace.getRaceWinner() == bet.getHorse())

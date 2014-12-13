@@ -59,7 +59,17 @@ public class App {
 				
 			}
 			
-			newGame.startRace();
+			while(newGame.getCurrentRace().isOn()) {
+				newGame.getCurrentRace().nextMove();
+			
+				try {
+		            Thread.sleep(20);
+		        } 
+		        catch (InterruptedException e) {
+		        }
+			}
+			
+			newGame.checkRaceResults();
 	
 			showRaceSummary(newGame.getCurrentRace());
 			
